@@ -21,30 +21,29 @@ import MapComponent from "./MapComponent";
 import L from "leaflet";
 
 import icon from "../constants";
-import axios from "axios";
 
-function ClickHandler() {
-  useMapEvents({
-    click: async (e) => {
-      const lat = e.latlng.lat;
-      const lng = e.latlng.lng;
-      console.log(lat);
-      console.log(lng);
+// function ClickHandler() {
+//   useMapEvents({
+//     click: async (e) => {
+//       const lat = e.latlng.lat;
+//       const lng = e.latlng.lng;
+//       console.log(lat);
+//       console.log(lng);
 
-      try {
-        const response = await axios.get(
-          `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
-        );
-        // setAddress(response.data.display_name);
-        console.log(response.data.display_name);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  });
+//       try {
+//         const response = await axios.get(
+//           `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
+//         );
+//         // setAddress(response.data.display_name);
+//         console.log(response.data.display_name);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     }
+//   });
 
-  return null;
-}
+//   return null;
+// }
 
 const MyMap = () => {
   function LocationMarker() {
@@ -93,7 +92,8 @@ const MyMap = () => {
 
       <LocationMarker />
 
-      <ClickHandler />
+      <MapComponent />
+      {/* <ClickHandler /> */}
       {/* <Marker
         position={position}
         icon={GetIcon()}
