@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import axios from "axios";
+
 import MapComponent from "./MapComponent";
 
 // function GetIcon(_iconSize) {
@@ -11,28 +18,32 @@ import MapComponent from "./MapComponent";
 //   });
 // }
 
-function ClickHandler() {
-  useMapEvents({
-    click: async (e) => {
-      const lat = e.latlng.lat;
-      const lng = e.latlng.lng;
-      console.log(lat);
-      console.log(lng);
+import L from "leaflet";
 
-      try {
-        const response = await axios.get(
-          `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
-        );
-        // setAddress(response.data.display_name);
-        console.log(response.data.display_name);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  });
+import icon from "../constants";
 
-  return null;
-}
+// function ClickHandler() {
+//   useMapEvents({
+//     click: async (e) => {
+//       const lat = e.latlng.lat;
+//       const lng = e.latlng.lng;
+//       console.log(lat);
+//       console.log(lng);
+
+//       try {
+//         const response = await axios.get(
+//           `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
+//         );
+//         // setAddress(response.data.display_name);
+//         console.log(response.data.display_name);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     }
+//   });
+
+//   return null;
+// }
 
 const MyMap = () => {
   function LocationMarker() {
@@ -66,30 +77,23 @@ const MyMap = () => {
     );
   }
 
-  // const position = useMap();
-  const position = [35.699711, 51.33758];
-
-  // useEffect(() => {
-  //   position.locate({ setView: true, maxZoom: 16 });
-  //   position.on("locationfound", (e) => {
-  //     console.log(e.latlng); // logs the current location coordinates
-  //   });
-  // }, [position]);
-
   return (
     <MapContainer
       doubleClickZoom={false}
       id="mapId"
       zoom={16}
-      center={position}
+      center={[49.1951, 16.6068]}
       style={{ height: "400px" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+
+      <LocationMarker />
+
       <MapComponent />
-      <ClickHandler />
+      {/* <ClickHandler /> */}
       {/* <Marker
         position={position}
         icon={GetIcon()}
