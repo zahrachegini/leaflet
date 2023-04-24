@@ -1,4 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   MapContainer,
   Marker,
@@ -50,6 +56,22 @@ const MyMap = () => {
   function LocationMarker() {
     const [position, setPosition] = useState(null);
     const [bbox, setBbox] = useState([]);
+    const [draggable, setDraggable] = useState(false);
+    const markerRef = useRef(null);
+    const eventHandlers = useMemo(
+      () => ({
+        dragend() {
+          const marker = markerRef.current;
+          if (marker != null) {
+            setPosition(marker.getLatLng());
+          }
+        },
+      }),
+      []
+    );
+    const toggleDraggable = useCallback(() => {
+      setDraggable((d) => !d);
+    }, []);
 
     const map = useMap();
 
@@ -65,14 +87,18 @@ const MyMap = () => {
     }, [map]);
 
     return position === null ? null : (
-      <Marker position={position} icon={icon}>
+      <Marker
+        position={position}
+        icon={icon}
+        draggable={draggable}
+        eventHandlers={eventHandlers}
+      >
         <Popup>
-          You are here. <br />
-          Map bbox: <br />
-          <b>Southwest lng</b>: {bbox[0]} <br />
-          <b>Southwest lat</b>: {bbox[1]} <br />
-          <b>Northeast lng</b>: {bbox[2]} <br />
-          <b>Northeast lat</b>: {bbox[3]}
+          <span onClick={toggleDraggable}>
+            {draggable
+              ? "Marker is draggable"
+              : "Click here to make marker draggable"}
+          </span>
         </Popup>
       </Marker>
     );
