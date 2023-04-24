@@ -96,8 +96,8 @@ const MyMap = () => {
         <Popup>
           <span onClick={toggleDraggable}>
             {draggable
-              ? "Marker is draggable"
-              : "Click here to make marker draggable"}
+              ? "آدرس خود را انتخاب کنید"
+              : "برای انتخاب آدرس، نشانگر را لمس کنید"}
           </span>
         </Popup>
       </Marker>
