@@ -93,7 +93,9 @@ const MyMap = () => {
       >
         <Popup>
           <span onClick={toggleDraggable}>
-            {draggable ? <ClickHandler /> : ""}
+            {draggable
+              ? "آدرس خود را انتخاب کنید"
+              : "برای انتخاب آدرس، نشانگر را لمس کنید"}
           </span>
         </Popup>
       </Marker>
@@ -115,7 +117,7 @@ const MyMap = () => {
 
       <LocationMarker />
 
-      {/* <ClickHandler /> */}
+      <ClickHandler />
       {/* <Marker
         position={position}
         icon={GetIcon()}
