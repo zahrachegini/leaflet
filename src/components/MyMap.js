@@ -15,8 +15,6 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import MapComponent from "./MapComponent";
-
 // function GetIcon(_iconSize) {
 //   return L.icon({
 //     iconUrl: require("../assets/images/marker.png"),
@@ -42,7 +40,7 @@ function ClickHandler() {
           `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
         );
         // setAddress(response.data.display_name);
-        console.log(response.data.display_name);
+        alert(response.data.display_name);
       } catch (error) {
         console.log(error);
       }
@@ -95,9 +93,7 @@ const MyMap = () => {
       >
         <Popup>
           <span onClick={toggleDraggable}>
-            {draggable
-              ? "آدرس خود را انتخاب کنید"
-              : "برای انتخاب آدرس، نشانگر را لمس کنید"}
+            {draggable ? <ClickHandler /> : ""}
           </span>
         </Popup>
       </Marker>
@@ -119,7 +115,7 @@ const MyMap = () => {
 
       <LocationMarker />
 
-      <ClickHandler />
+      {/* <ClickHandler /> */}
       {/* <Marker
         position={position}
         icon={GetIcon()}
