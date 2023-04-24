@@ -82,7 +82,7 @@ const MyMap = () => {
       doubleClickZoom={false}
       id="mapId"
       zoom={16}
-      center={[49.1951, 16.6068]}
+      center={[35.699711, 51.33758]}
       style={{ height: "400px" }}
     >
       <TileLayer
