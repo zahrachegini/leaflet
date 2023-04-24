@@ -6,19 +6,19 @@ const MapAddress = () => {
     // <MyMap />
     <div className="container mx-auto border border-teal-600 mt-10 p-3 rounded">
       <div>
-        <MyMap  />
+        <MyMap />
       </div>
       <div>
         <form>
-          <div className=" my-8">
-            <lable className="block text-lx font-bold">کد پستی</lable>
+          <div className="my-8">
+            <label className="block text-lx font-bold">کد پستی</label>
             <input
               type="text"
               className="border-2 border-teal-600 rounded w-full md:w-1/3 p-3 focus:outline-teal-600 mt-2"
             />
           </div>
           <div>
-            <lable className="block text-lx font-bold">آدرس</lable>
+            <label className="block text-lx font-bold">آدرس</label>
             <textarea
               type="text"
               className="border-2 border-teal-600 rounded w-full md:w-1/3 p-3 focus:outline-teal-600 mt-2"
@@ -26,7 +26,7 @@ const MapAddress = () => {
             />
           </div>
           <button className="bg-teal-600 text-slate-50 rounded w-full md:w-1/3 p-3 mt-2 text-lx font-bold">
-            ارسال اطلاعات
+            ارسال فایل
           </button>
         </form>
       </div>
