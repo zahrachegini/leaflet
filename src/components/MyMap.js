@@ -28,19 +28,21 @@ import icon from "../constants";
 import axios from "axios";
 
 function ClickHandler() {
+  const [address, setAddress] = useState([]);
   useMapEvents({
     click: async (e) => {
       const lat = e.latlng.lat;
       const lng = e.latlng.lng;
+      const language = e.latlng.language;
       console.log(lat);
       console.log(lng);
 
       try {
         const response = await axios.get(
-          `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
+          `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&accept-language=${language}`
         );
-        // setAddress(response.data.display_name);
-        alert(response.data.display_name);
+        setAddress(response.data.address);
+        alert(response.data.address);
       } catch (error) {
         console.log(error);
       }
@@ -67,9 +69,9 @@ const MyMap = () => {
       }),
       []
     );
-    const toggleDraggable = useCallback(() => {
-      setDraggable((d) => !d);
-    }, []);
+    // const toggleDraggable = useCallback(() => {
+    //   setDraggable((d) => !d);
+    // }, []);
 
     const map = useMap();
 
@@ -92,7 +94,7 @@ const MyMap = () => {
         eventHandlers={eventHandlers}
       >
         <Popup>
-          <span onClick={toggleDraggable}>
+          <span>
             {draggable
               ? "آدرس خود را انتخاب کنید"
               : "برای انتخاب آدرس، نشانگر را لمس کنید"}
