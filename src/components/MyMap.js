@@ -53,25 +53,36 @@ function ClickHandler() {
 }
 
 const MyMap = () => {
-  function LocationMarker() {
-    const [position, setPosition] = useState(null);
-    const [bbox, setBbox] = useState([]);
-    const [draggable, setDraggable] = useState(false);
-    const markerRef = useRef(null);
-    const eventHandlers = useMemo(
-      () => ({
-        dragend() {
-          const marker = markerRef.current;
-          if (marker != null) {
-            setPosition(marker.getLatLng());
-          }
-        },
-      }),
-      []
+  const [position, setPosition] = useState(null);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setPosition([position.coords.latitude, position.coords.longitude]);
+      },
+      () => console.log("Could not get position")
     );
-    // const toggleDraggable = useCallback(() => {
-    //   setDraggable((d) => !d);
-    // }, []);
+  }, []);
+  // function LocationMarker() {
+  //   const [position, setPosition] = useState(null);
+  //   const [bbox, setBbox] = useState([]);
+  //   const [draggable, setDraggable] = useState(false);
+  //   const markerRef = useRef(null);
+  //   const eventHandlers = useMemo(
+  //     () => ({
+  //       dragend() {
+  //         const marker = markerRef.current;
+  //         if (marker != null) {
+  //           setPosition(marker.getLatLng());
+  //         }
+  //       },
+  //     }),
+  //     []
+  //   );
+
+  // const toggleDraggable = useCallback(() => {
+  //   setDraggable((d) => !d);
+  // }, []);
 
   //   const map = useMap();
 
@@ -102,7 +113,6 @@ const MyMap = () => {
   //       </Popup>
   //     </Marker>
   //   );
-  }
 
   return (
     <MapContainer
@@ -116,8 +126,12 @@ const MyMap = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-
-      <LocationMarker />
+      {position && (
+        <Marker position={position}>
+          <Popup>You are here</Popup>
+        </Marker>
+      )}
+      {/* <LocationMarker /> */}
 
       <ClickHandler />
       {/* <Marker
