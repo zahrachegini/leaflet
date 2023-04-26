@@ -14,6 +14,7 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useGeolocation } from 'react-geolocation';
 
 // function GetIcon(_iconSize) {
 //   return L.icon({
