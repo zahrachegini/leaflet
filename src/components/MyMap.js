@@ -56,7 +56,6 @@ const MyMap = () => {
   function LocationMarker() {
     const [position, setPosition] = useState(null);
     const [bbox, setBbox] = useState([]);
-    const [draggable, setDraggable] = useState(false);
     const markerRef = useRef(null);
     const eventHandlers = useMemo(
       () => ({
@@ -69,10 +68,6 @@ const MyMap = () => {
       }),
       []
     );
-
-    // const toggleDraggable = useCallback(() => {
-    //   setDraggable((d) => !d);
-    // }, []);
 
     const map = useMap();
 
@@ -88,19 +83,8 @@ const MyMap = () => {
     }, [map]);
 
     return position === null ? null : (
-      <Marker
-        position={position}
-        icon={icon}
-        draggable={draggable}
-        eventHandlers={eventHandlers}
-      >
-        {/* <Popup>
-            <span>
-              {draggable
-                ? "آدرس خود را انتخاب کنید"
-                : "برای انتخاب آدرس، نشانگر را لمس کنید"}
-            </span>
-          </Popup> */}
+      <Marker position={position} icon={icon} eventHandlers={eventHandlers}>
+        <Popup>{position}</Popup>
       </Marker>
     );
   }
