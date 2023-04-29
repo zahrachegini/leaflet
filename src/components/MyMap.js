@@ -84,7 +84,7 @@ const MyMap = () => {
 
     return position === null ? null : (
       <Marker position={position} icon={icon} eventHandlers={eventHandlers}>
-        <Popup>{position}</Popup>
+        <Popup>test</Popup>
       </Marker>
     );
   }
