@@ -69,40 +69,40 @@ const MyMap = () => {
       }),
       []
     );
-    
+
     // const toggleDraggable = useCallback(() => {
     //   setDraggable((d) => !d);
     // }, []);
 
-  //   const map = useMap();
+    const map = useMap();
 
-  //   useEffect(() => {
-  //     map.locate().on("locationfound", function (e) {
-  //       setPosition(e.latlng);
-  //       map.flyTo(e.latlng, map.getZoom());
-  //       const radius = e.accuracy;
-  //       const circle = L.circle(e.latlng, radius);
-  //       circle.addTo(map);
-  //       setBbox(e.bounds.toBBoxString().split(","));
-  //     });
-  //   }, [map]);
+    useEffect(() => {
+      map.locate().on("locationfound", function (e) {
+        setPosition(e.latlng);
+        map.flyTo(e.latlng, map.getZoom());
+        const radius = e.accuracy;
+        const circle = L.circle(e.latlng, radius);
+        circle.addTo(map);
+        setBbox(e.bounds.toBBoxString().split(","));
+      });
+    }, [map]);
 
-  //   return position === null ? null : (
-  //     <Marker
-  //       position={position}
-  //       icon={icon}
-  //       draggable={draggable}
-  //       eventHandlers={eventHandlers}
-  //     >
-  //       <Popup>
-  //         <span>
-  //           {draggable
-  //             ? "آدرس خود را انتخاب کنید"
-  //             : "برای انتخاب آدرس، نشانگر را لمس کنید"}
-  //         </span>
-  //       </Popup>
-  //     </Marker>
-  //   );
+    return position === null ? null : (
+      <Marker
+        position={position}
+        icon={icon}
+        draggable={draggable}
+        eventHandlers={eventHandlers}
+      >
+        {/* <Popup>
+            <span>
+              {draggable
+                ? "آدرس خود را انتخاب کنید"
+                : "برای انتخاب آدرس، نشانگر را لمس کنید"}
+            </span>
+          </Popup> */}
+      </Marker>
+    );
   }
 
   return (
