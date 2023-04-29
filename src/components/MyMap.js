@@ -42,7 +42,7 @@ function ClickHandler() {
           `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&accept-language=${language}`
         );
         setAddress(response.data.address);
-        alert(response.data.address);
+        alert(response.data.address.city);
       } catch (error) {
         console.log(error);
       }
@@ -57,17 +57,17 @@ const MyMap = () => {
     const [position, setPosition] = useState(null);
     const [bbox, setBbox] = useState([]);
     const markerRef = useRef(null);
-    const eventHandlers = useMemo(
-      () => ({
-        dragend() {
-          const marker = markerRef.current;
-          if (marker != null) {
-            setPosition(marker.getLatLng());
-          }
-        },
-      }),
-      []
-    );
+    // const eventHandlers = useMemo(
+    //   () => ({
+    //     dragend() {
+    //       const marker = markerRef.current;
+    //       if (marker != null) {
+    //         setPosition(marker.getLatLng());
+    //       }
+    //     },
+    //   }),
+    //   []
+    // );
 
     const map = useMap();
 
@@ -86,7 +86,7 @@ const MyMap = () => {
       <Marker
         position={position}
         icon={icon}
-        eventHandlers={eventHandlers}
+        // eventHandlers={eventHandlers}
       ></Marker>
     );
   }

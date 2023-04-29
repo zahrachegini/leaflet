@@ -1,12 +1,12 @@
 import React from "react";
-import MarkersMap from "./MyMap";
+import MyMap from "./MyMap";
 
 const MapAddress = () => {
   return (
     // <MyMap />
     <div className="container mx-auto border border-teal-600 mt-10 p-3 rounded">
       <div>
-        <MarkersMap />
+        <MyMap />
       </div>
       <div>
         <form>
