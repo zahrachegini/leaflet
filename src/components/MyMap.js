@@ -83,9 +83,11 @@ const MyMap = () => {
     }, [map]);
 
     return position === null ? null : (
-      <Marker position={position} icon={icon} eventHandlers={eventHandlers}>
-        <Popup>test</Popup>
-      </Marker>
+      <Marker
+        position={position}
+        icon={icon}
+        eventHandlers={eventHandlers}
+      ></Marker>
     );
   }
 
