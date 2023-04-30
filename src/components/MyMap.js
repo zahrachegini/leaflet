@@ -27,7 +27,7 @@ const MyMap = ({ ClickHandler }) => {
     return position === null
       ? null
       : // <Marker position={position} icon={icon}></Marker>
-        alert("OK");
+        console.log("OK");
   }
 
   return (
