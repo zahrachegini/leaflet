@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 
 import L from "leaflet";
 
-import icon from "../constants";
+import icon from "../assets/images/marker.png";
 
 const MyMap = ({ ClickHandler }) => {
   function LocationMarker() {
