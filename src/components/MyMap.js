@@ -24,9 +24,10 @@ const MyMap = ({ ClickHandler }) => {
       });
     }, [map]);
 
-    return position === null ? null : (
-      <Marker position={position} icon={icon}></Marker>
-    );
+    return position === null
+      ? null
+      : // <Marker position={position} icon={icon}></Marker>
+        alert("OK");
   }
 
   return (

@@ -20,7 +20,7 @@ const MapAddress = () => {
             `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&accept-language=${language}`
           );
           let userAddress = response.data.address;
-          setAddress(userAddress);
+          setAddress(userAddress.county);
         } catch (error) {
           console.log(error);
         }
@@ -46,7 +46,7 @@ const MapAddress = () => {
           <div>
             <label className="block text-lx font-bold">آدرس</label>
             <textarea
-              value={{...address}}
+              value={address}
               type="text"
               className="border-2 border-teal-600 rounded w-full md:w-1/3 p-3 focus:outline-teal-600 mt-2"
               rows="4"
