@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 
 import L from "leaflet";
 
-import icon from "../assets/images/marker.png";
+import icon from "../constants";
 
 const MyMap = ({ ClickHandler }) => {
   function LocationMarker() {
@@ -31,7 +31,7 @@ const MyMap = ({ ClickHandler }) => {
           zIndex: "999",
         }}
         position={position}
-        icon={icon}
+        // icon={icon}
       ></Marker>
     );
     // console.log("OK");
