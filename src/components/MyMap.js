@@ -24,10 +24,17 @@ const MyMap = ({ ClickHandler }) => {
       });
     }, [map]);
 
-    return position === null
-      ? null
-      : // <Marker position={position} icon={icon}></Marker>
-        console.log("OK");
+    return position === null ? null : (
+      <Marker
+        className="absolute button-auto right-auto left-[50%] top-[40%]"
+        style={{
+          zIndex: "999",
+        }}
+        position={position}
+        icon={icon}
+      ></Marker>
+    );
+    // console.log("OK");
   }
 
   return (
@@ -44,7 +51,7 @@ const MyMap = ({ ClickHandler }) => {
       />
 
       <LocationMarker />
-
+      {/* <Marker position={latlng.lat} icon={icon}></Marker> */}
       <ClickHandler />
     </MapContainer>
   );

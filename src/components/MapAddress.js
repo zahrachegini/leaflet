@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MyMap from "./MyMap";
 import { useMapEvents } from "react-leaflet";
 import axios from "axios";
+import marker from "../assets/images/marker.png";
 
 const MapAddress = () => {
   const [address, setAddress] = useState([]);
@@ -31,8 +32,18 @@ const MapAddress = () => {
   }
   return (
     <div className="container mx-auto border border-teal-600 mt-10 p-3 rounded">
-      <div>
+      <div className="relative">
         <MyMap ClickHandler={ClickHandler} />
+        <div>
+          <img
+            src={marker}
+            className="absolute button-auto right-auto left-[50%] top-[40%]"
+            alt="marker"
+            style={{
+              zIndex: "999",
+            }}
+          />
+        </div>
       </div>
       <div>
         <form>
