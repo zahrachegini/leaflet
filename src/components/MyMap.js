@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-
-import L from "leaflet";
-
-import icon from "../constants";
 
 const MyMap = ({ ClickHandler }) => {
   function LocationMarker() {

@@ -9,6 +9,7 @@ const MapAddress = () => {
   const [address, setAddress] = useState();
   const [postalCode, setPostalCode] = useState("");
   const [showInput, setShowInput] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChangePostalCode = (e) => {
     setPostalCode(e.target.value);
@@ -21,6 +22,7 @@ const MapAddress = () => {
   function ClickHandler() {
     useMapEvents({
       click: async (e) => {
+        setLoading(true);
         const lat = e.latlng.lat;
         const lng = e.latlng.lng;
         const language = e.latlng.language;
@@ -29,6 +31,7 @@ const MapAddress = () => {
           const response = await axios.get(
             `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&accept-language=${language}`
           );
+          setLoading(false);
           let userAddress = response.data.address;
 
           let county = userAddress.county ? userAddress.county + "," : "";
@@ -61,6 +64,10 @@ const MapAddress = () => {
   function handleInputOpen() {
     setShowInput(true);
   }
+
+  const mouseLeave = () => {
+    alert("It's me");
+  };
 
   return (
     <div className="container mx-auto border border-teal-600 mt-4 p-3 rounded-lg grid md:grid-cols-3 gap-4">
@@ -110,7 +117,7 @@ const MapAddress = () => {
             <label className="block text-lx font-bold mt-2">آدرس</label>
 
             <textarea
-              value={address}
+              value={loading ? "در حال جستسجو..." : address}
               type="text"
               className="border-2 border-teal-600 rounded-lg w-full  p-3 focus:outline-teal-600 mt-2"
               rows="4"
