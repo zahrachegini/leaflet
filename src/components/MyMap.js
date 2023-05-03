@@ -5,9 +5,9 @@ import "leaflet/dist/leaflet.css";
 const MyMap = ({ ClickHandler }) => {
   function MyComponent() {
     const map = useMapEvents({
-      mouseup: (e) => {
-        alert("map loc", e.latlng);
-        alert("map bounds", e.target.getBounds());
+      touchend: (e) => {
+        console.log("map loc", e.latlng);
+        console.log("map bounds", e.target.getBounds());
       },
     });
     return null;
