@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 const MyMap = ({ ClickHandler }) => {
+  function MyComponent() {
+    const map = useMapEvents({
+      mouseup: (e) => {
+        alert("map loc", e.latlng);
+        alert("map bounds", e.target.getBounds());
+      },
+    });
+    return null;
+  }
+
   function LocationMarker() {
     const [position, setPosition] = useState(null);
     const [bbox, setBbox] = useState([]);
@@ -42,6 +52,7 @@ const MyMap = ({ ClickHandler }) => {
       <LocationMarker />
 
       <ClickHandler />
+      <MyComponent />
     </MapContainer>
   );
 };
