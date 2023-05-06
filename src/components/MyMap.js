@@ -3,33 +3,35 @@ import { MapContainer, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 const MyMap = ({ ClickHandler }) => {
-  // function MyComponent() {
-  //   const map = useMapEvents({
-  //     mouseup: (e) => {
-  //       alert("map loc", e.latlng);
-  //       let mouseLocation = e.target.lat;
-  //       console.log(mouseLocation);
-  //       console.log("map loc", e.latlng);
-  //       console.log("map bounds", e.target.getBounds());
-  //       map.zoomIn();
-  //     },
-  //   });
-  //   return null;
-  // }
-
   function MyComponent() {
     const map = useMapEvents({
+      // mouseup: (e) => {
+      //   alert("Mouse up", e.latlng);
+      //   console.log("Mouse up", e.latlng.lat);
+      // },
       touchend: (e) => {
-        alert("map loc", e.latlng.alt);
-        // let mouseLocation = e.target.lat;
-        console.log(e.latlng.lat);
-        // console.log("map loc", e.latlng);
-        // console.log("map bounds", e.target.getBounds());/
+        alert("Touch end", e.latlng);
+        console.log("Mouse up", e.latlng.lat);
+
         map.zoomIn();
       },
     });
     return null;
   }
+
+  // function MyComponent() {
+  //   const map = useMapEvents({
+  //     mouseup: (e) => {
+  //       alert("map loc", e.latlng.alt);
+  //       // let mouseLocation = e.target.lat;
+  //       console.log(e.latlng.lat);
+  //       // console.log("map loc", e.latlng);
+  //       // console.log("map bounds", e.target.getBounds());/
+  //       map.zoomIn();
+  //     },
+  //   });
+  //   return null;
+  // }
 
   function LocationMarker() {
     const [position, setPosition] = useState(null);
