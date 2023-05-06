@@ -25,7 +25,7 @@ function OpenStreetMap() {
   }
 
   // Initialize the map when the component mounts
-  React.useEffect(() => {
+  React.useEffect((L) => {
     // Create a new instance of the map
     const map = L.map(mapRef.current, {
       center: [51.505, -0.09],

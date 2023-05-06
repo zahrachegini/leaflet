@@ -117,7 +117,7 @@ const MapAddress = () => {
             <label className="block text-lx font-bold mt-2">آدرس</label>
 
             <textarea
-              value={loading ? "در حال جستسجو..." : address}
+              value={loading ? "در حال جستجو..." : address}
               type="text"
               className="border-2 border-teal-600 rounded-lg w-full  p-3 focus:outline-teal-600 mt-2"
               rows="4"
