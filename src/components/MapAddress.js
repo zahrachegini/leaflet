@@ -1,15 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MyMap from "./MyMap";
-import { useMapEvents } from "react-leaflet";
+import { Marker, useMap, useMapEvents } from "react-leaflet";
 import axios from "axios";
 import marker from "../assets/images/marker.png";
-import { IoSearch, IoClose } from "react-icons/io5";
+import L from "leaflet";
 
-const MapAddress = () => {
+import SearchBox from "./SearchBox";
+
+function ResetCenterView(props) {
+  const { selectPosition } = props;
+  const map = useMap();
+
+  useEffect(() => {
+    if (selectPosition) {
+      map.setView(
+        L.latLng(selectPosition?.lat, selectPosition?.lon),
+        map.getZoom(),
+        {
+          animate: true,
+        }
+      );
+    }
+  }, [selectPosition]);
+
+  return null;
+}
+
+const MapAddress = (props) => {
   const [address, setAddress] = useState();
   const [postalCode, setPostalCode] = useState("");
-  const [showInput, setShowInput] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { selectPosition } = props;
+  const locationSelection = [selectPosition?.lat, selectPosition?.lon];
 
   const handleChangePostalCode = (e) => {
     setPostalCode(e.target.value);
@@ -34,6 +56,7 @@ const MapAddress = () => {
           setLoading(false);
           let userAddress = response.data.address;
 
+          
           let county = userAddress.county ? userAddress.county + "," : "";
           let State = userAddress.state ? userAddress.state + "," : "";
           let country = userAddress.country ? userAddress.country + "," : "";
@@ -57,59 +80,27 @@ const MapAddress = () => {
     return null;
   }
 
-  function handleInputClose() {
-    setShowInput(false);
-  }
-
-  function handleInputOpen() {
-    setShowInput(true);
-  }
-
-  const mouseLeave = () => {
-    alert("It's me");
-  };
-
   return (
     <div className="container mx-auto border border-teal-600 mt-4 p-3 rounded-lg grid md:grid-cols-3 gap-4">
       <div className="relative md:col-span-2">
         <MyMap ClickHandler={ClickHandler} />
-        <div>
-          <img
-            src={marker}
-            className="absolute button-auto right-auto left-[50%] top-[40%] cursor-pointer"
-            alt="marker"
-            style={{
-              zIndex: "999",
-            }}
-          />
-        </div>
-
-        <div
-          className="absolute button-auto right-auto left-[10px] top-[20%] flex items-center justify-start border border-2 border-gray-300"
-          style={{
-            zIndex: "999",
-          }}
-        >
-          <form className="">
-            {showInput && (
-              <div className="flex items-center ">
-                <div
-                  onClick={handleInputClose}
-                  className="bg-white p-2 cursor-pointer"
-                >
-                  <IoClose />
-                </div>
-                <input type="text" className="p-1 outline-none" />
-              </div>
-            )}
-          </form>
-          <div
-            onClick={handleInputOpen}
-            className="bg-white p-2 cursor-pointer"
-          >
-            <IoSearch />
+        {selectPosition && (
+          <div>
+            <Marker position={locationSelection}>
+              <img
+                src={marker}
+                className="absolute button-auto right-auto left-[50%] top-[40%] cursor-pointer"
+                alt="marker"
+                style={{
+                  zIndex: "999",
+                }}
+              />
+            </Marker>
+            <ResetCenterView selectPosition={selectPosition} />
           </div>
-        </div>
+        )}
+
+        <SearchBox />
       </div>
       <div>
         <form>

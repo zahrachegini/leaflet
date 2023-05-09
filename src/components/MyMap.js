@@ -5,10 +5,10 @@ import "leaflet/dist/leaflet.css";
 const MyMap = ({ ClickHandler }) => {
   function MyComponent() {
     const map = useMapEvents({
-      // mouseup: (e) => {
-      //   alert("Mouse up", e.latlng);
-      //   console.log("Mouse up", e.latlng.lat);
-      // },
+      mouseup: (e) => {
+        // alert("Mouse up", e.latlng);
+        console.log("Mouse up", e.latlng.lat);
+      },
       touchend: (e) => {
         alert("Touch end", e.latlng);
         console.log("Mouse up", e.latlng.lat);
