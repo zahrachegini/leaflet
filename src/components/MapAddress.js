@@ -23,7 +23,7 @@ const MapAddress = (props) => {
 
   function ClickHandler() {
     const map = useMapEvents({
-      touchend: async (e) => {
+      mouseup: async (e) => {
         setLoading(true);
         map.getCenter();
         const lat = map.getCenter().lat;
