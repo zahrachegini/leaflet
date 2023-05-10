@@ -13,8 +13,10 @@ function MoveLocation() {
 
       // map.setView([e.latlng.lat, e.latlng.lng], 16);
       map.zoomIn();
+      
     },
   });
+
   return null;
 }
 

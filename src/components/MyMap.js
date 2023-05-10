@@ -34,9 +34,9 @@ const MyMap = ({ ClickHandler }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <LocationMarker />
+      {/* <LocationMarker /> */}
       <ClickHandler />
-      <MoveLocation />
+      {/* <MoveLocation /> */}
     </MapContainer>
   );
 };

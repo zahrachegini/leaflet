@@ -22,12 +22,13 @@ const MapAddress = (props) => {
   };
 
   function ClickHandler() {
-    useMapEvents({
-      click: async (e) => {
+    const map = useMapEvents({
+      mouseup: async (e) => {
         setLoading(true);
-        const lat = e.latlng.lat;
-        const lng = e.latlng.lng;
-        const language = e.latlng.language;
+        map.getCenter();
+        const lat = map.getCenter().lat;
+        const lng = map.getCenter().lng;
+        const language = map.getCenter().language;
 
         try {
           const response = await axios.get(
@@ -75,7 +76,7 @@ const MapAddress = (props) => {
           />
         </div>
 
-        <SearchBox  />
+        <SearchBox />
       </div>
       <div>
         <form>
