@@ -1,30 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MyMap from "./MyMap";
-import { Marker, useMap, useMapEvents } from "react-leaflet";
+import { useMapEvents } from "react-leaflet";
 import axios from "axios";
 import marker from "../assets/images/marker.png";
-import L from "leaflet";
 
 import SearchBox from "./SearchBox";
-
-function ResetCenterView(props) {
-  const { selectPosition } = props;
-  const map = useMap();
-
-  useEffect(() => {
-    if (selectPosition) {
-      map.setView(
-        L.latLng(selectPosition?.lat, selectPosition?.lon),
-        map.getZoom(),
-        {
-          animate: true,
-        }
-      );
-    }
-  }, [selectPosition]);
-
-  return null;
-}
 
 const MapAddress = (props) => {
   const [address, setAddress] = useState();
@@ -56,7 +36,6 @@ const MapAddress = (props) => {
           setLoading(false);
           let userAddress = response.data.address;
 
-          
           let county = userAddress.county ? userAddress.county + "," : "";
           let State = userAddress.state ? userAddress.state + "," : "";
           let country = userAddress.country ? userAddress.country + "," : "";
@@ -84,23 +63,19 @@ const MapAddress = (props) => {
     <div className="container mx-auto border border-teal-600 mt-4 p-3 rounded-lg grid md:grid-cols-3 gap-4">
       <div className="relative md:col-span-2">
         <MyMap ClickHandler={ClickHandler} />
-        {selectPosition && (
-          <div>
-            <Marker position={locationSelection}>
-              <img
-                src={marker}
-                className="absolute button-auto right-auto left-[50%] top-[40%] cursor-pointer"
-                alt="marker"
-                style={{
-                  zIndex: "999",
-                }}
-              />
-            </Marker>
-            <ResetCenterView selectPosition={selectPosition} />
-          </div>
-        )}
 
-        <SearchBox />
+        <div className="absolute flex left-[50%] bottom-[50%]">
+          <img
+            src={marker}
+            className=" cursor-pointer"
+            alt="marker"
+            style={{
+              zIndex: "999",
+            }}
+          />
+        </div>
+
+        <SearchBox  />
       </div>
       <div>
         <form>

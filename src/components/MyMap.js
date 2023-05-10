@@ -1,38 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import MoveLocation from "./MoveLocation";
 
 const MyMap = ({ ClickHandler }) => {
-  function MyComponent() {
-    const map = useMapEvents({
-      mouseup: (e) => {
-        // alert("Mouse up", e.latlng);
-        console.log("Mouse up", e.latlng.lat);
-      },
-      touchend: (e) => {
-        alert("Touch end", e.latlng);
-        console.log("Mouse up", e.latlng.lat);
-
-        map.zoomIn();
-      },
-    });
-    return null;
-  }
-
-  // function MyComponent() {
-  //   const map = useMapEvents({
-  //     mouseup: (e) => {
-  //       alert("map loc", e.latlng.alt);
-  //       // let mouseLocation = e.target.lat;
-  //       console.log(e.latlng.lat);
-  //       // console.log("map loc", e.latlng);
-  //       // console.log("map bounds", e.target.getBounds());/
-  //       map.zoomIn();
-  //     },
-  //   });
-  //   return null;
-  // }
-
   function LocationMarker() {
     const [position, setPosition] = useState(null);
     const [bbox, setBbox] = useState([]);
@@ -43,17 +14,11 @@ const MyMap = ({ ClickHandler }) => {
       map.locate().on("locationfound", function (e) {
         setPosition(e.latlng);
         map.flyTo(e.latlng, map.getZoom());
-        // const radius = e.accuracy;
-        // const circle = L.circle(e.latlng, radius);
-        // circle.addTo(map);
         setBbox(e.bounds.toBBoxString().split(","));
       });
     }, [map]);
 
-    return position === null
-      ? null
-      : // <Marker position={position} icon={icon}></Marker>
-        console.log("OK");
+    return position === null ? null : console.log("OK");
   }
 
   return (
@@ -69,10 +34,9 @@ const MyMap = ({ ClickHandler }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <LocationMarker />
-
+      {/* <LocationMarker /> */}
       <ClickHandler />
-      <MyComponent />
+      <MoveLocation />
     </MapContainer>
   );
 };
