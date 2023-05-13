@@ -21,88 +21,6 @@ const MapAddress = (props) => {
     setAddress(e.target.value);
   };
 
-  // function ClickHandler() {
-  //   useMapEvents({
-  //     click: async (e) => {
-  //       const lat = e.latlng.lat;
-  //       const lng = e.latlng.lng;
-  //       const language = e.latlng.language;
-
-  //       try {
-  //         const response = await axios.get(
-  //           `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&accept-language=${language}`
-  //         );
-  //         let userAddress = response.data.address;
-
-  //         let county = userAddress.county ? userAddress.county + "," : "";
-  //         let State = userAddress.state ? userAddress.state + "," : "";
-  //         let country = userAddress.country ? userAddress.country + "," : "";
-  //         let town = userAddress.town ? userAddress.town + "," : "";
-  //         let district = userAddress.district ? userAddress.district + "," : "";
-  //         let hamlet = userAddress.hamlet ? userAddress.hamlet + "," : "";
-  //         let neighbourhood = userAddress.neighbourhood
-  //           ? userAddress.neighbourhood + ","
-  //           : "";
-  //         let suburb = userAddress.suburb ? userAddress.suburb + "," : "";
-  //         let road = userAddress.road ? userAddress.road + "," : "";
-  //         setAddress(
-  //           `${country}${State}${county}${suburb}${town}${district}${hamlet}${neighbourhood}${road} `
-  //         );
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     },
-  //   })}
-
-  //====================================================================
-
-  // function ClickHandler() {
-  //   const map = useMapEvents({
-  //     click: async (e) => {
-  //       setLoading(true);
-  //       map.getCenter();
-  //       const lat = map.getCenter().lat;
-  //       const lng = map.getCenter().lng;
-  //       console.log(lat, lng);
-  //       const language = map.getCenter().language;
-
-  //       try {
-  //         const response = await axios.get(
-  //           `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&accept-language=${language}`
-  //         );
-  //         setLoading(false);
-  //         let userAddress = response.data.address;
-
-  //         let county = userAddress.county ? userAddress.county + "," : "";
-  //         let State = userAddress.state ? userAddress.state + "," : "";
-  //         let country = userAddress.country ? userAddress.country + "," : "";
-  //         let town = userAddress.town ? userAddress.town + "," : "";
-  //         let district = userAddress.district ? userAddress.district + "," : "";
-  //         let hamlet = userAddress.hamlet ? userAddress.hamlet + "," : "";
-  //         let neighbourhood = userAddress.neighbourhood
-  //           ? userAddress.neighbourhood + ","
-  //           : "";
-  //         let village = userAddress.village ? userAddress.village + "," : "";
-  //         let suburb = userAddress.suburb ? userAddress.suburb + "," : "";
-  //         let road = userAddress.road ? userAddress.road + "," : "";
-  //         let amenity = userAddress.amenity ? userAddress.amenity + "," : "";
-  //         let railway = userAddress.railway ? userAddress.railway + "," : "";
-  //         let shop = userAddress.shop ? userAddress.shop + "," : "";
-  //         let leisure = userAddress.leisure ? userAddress.leisure + "," : "";
-  //         let office = userAddress.office ? userAddress.office + "," : "";
-  //         let tourism = userAddress.tourism ? userAddress.tourism + "," : "";
-  //         setAddress(
-  //           `${country}${State}${county}${suburb}${town}${district}${hamlet}${neighbourhood}${road}${amenity}${railway}${village}${shop}${leisure}${office}${tourism} `
-  //         );
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     },
-  //   });
-
-  //   return null;
-  // }
-
   function ClickHandler() {
     const map = useMapEvents({
       click: async (e) => {
@@ -207,3 +125,27 @@ const MapAddress = (props) => {
 };
 
 export default MapAddress;
+
+{
+  /* <> let county = userAddress.county ? userAddress.county + "," : "";
+        let State = userAddress.state ? userAddress.state + "," : "";
+        // let country = userAddress.country ? userAddress.country + "," : "";
+        let town = userAddress.town ? userAddress.town + "," : "";
+        // let district = userAddress.district ? userAddress.district + "," : "";
+        let hamlet = userAddress.hamlet ? userAddress.hamlet + "," : "";
+        let neighbourhood = userAddress.neighbourhood
+          ? userAddress.neighbourhood + ","
+          : "";
+        let village = userAddress.village ? userAddress.village + "," : "";
+        // let suburb = userAddress.suburb ? userAddress.suburb + "," : "";
+        let road = userAddress.road ? userAddress.road + "," : "";
+        let amenity = userAddress.amenity ? userAddress.amenity + "," : "";
+        let railway = userAddress.railway ? userAddress.railway + "," : "";
+        let shop = userAddress.shop ? userAddress.shop + "," : "";
+        let leisure = userAddress.leisure ? userAddress.leisure + "," : "";
+        let office = userAddress.office ? userAddress.office + "," : "";
+        let tourism = userAddress.tourism ? userAddress.tourism + "," : "";
+        setAddress(
+          `${State}${county}${town}${hamlet}${neighbourhood}${road}${amenity}${railway}${village}${shop}${leisure}${office}${tourism} `
+        );</> */
+}
