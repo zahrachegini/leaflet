@@ -19,9 +19,7 @@ const MyMap = ({ ClickHandler }) => {
       });
     }, [map]);
 
-    return position === null
-      ? alert("مکان یاب دستگاه خود را فعال کنید")
-      : console.log("OK");
+    return position === null ? null : alert("مکان یاب دستگاه خود را فعال کنید");
   }
 
   return (
