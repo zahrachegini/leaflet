@@ -15,11 +15,11 @@ const MyMap = ({ ClickHandler }) => {
         setPosition(e.latlng);
         map.flyTo(e.latlng, map.getZoom());
         setBbox(e.bounds.toBBoxString().split(","));
-        alert("OKKKKKKK");
+        // alert("OKKKKKKK");
       });
     }, [map]);
 
-    return position === null ? null : alert("مکان یاب دستگاه خود را فعال کنید");
+    return position === null ? null : console.log("مکان یاب دستگاه خود را فعال کنید");
   }
 
   return (
