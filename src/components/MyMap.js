@@ -14,6 +14,7 @@ const MyMap = ({ ClickHandler }) => {
       map.locate().on("locationfound", function (e) {
         setPosition(e.latlng);
         map.flyTo(e.latlng, map.getZoom());
+        alert("OK");
         setBbox(e.bounds.toBBoxString().split(","));
       });
     }, [map]);

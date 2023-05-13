@@ -28,6 +28,7 @@ const MapAddress = (props) => {
         map.getCenter();
         const lat = map.getCenter().lat;
         const lng = map.getCenter().lng;
+        console.log(lat, lng);
         const language = map.getCenter().language;
 
         try {
@@ -46,10 +47,17 @@ const MapAddress = (props) => {
           let neighbourhood = userAddress.neighbourhood
             ? userAddress.neighbourhood + ","
             : "";
+          let village = userAddress.village ? userAddress.village + "," : "";
           let suburb = userAddress.suburb ? userAddress.suburb + "," : "";
           let road = userAddress.road ? userAddress.road + "," : "";
+          let amenity = userAddress.amenity ? userAddress.amenity + "," : "";
+          let railway = userAddress.railway ? userAddress.railway + "," : "";
+          let shop = userAddress.shop ? userAddress.shop + "," : "";
+          let leisure = userAddress.leisure ? userAddress.leisure + "," : "";
+          let office = userAddress.office ? userAddress.office + "," : "";
+          let tourism = userAddress.tourism ? userAddress.tourism + "," : "";
           setAddress(
-            `${country}${State}${county}${suburb}${town}${district}${hamlet}${neighbourhood}${road} `
+            `${country}${State}${county}${suburb}${town}${district}${hamlet}${neighbourhood}${road}${amenity}${railway}${village}${shop}${leisure}${office}${tourism} `
           );
         } catch (error) {
           console.log(error);
