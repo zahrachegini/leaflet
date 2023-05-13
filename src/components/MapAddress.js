@@ -25,10 +25,16 @@ const MapAddress = (props) => {
     const map = useMapEvents({
       click: async (e) => {
         handleEvent(e);
+        console.log("click");
       },
       mouseup: async (e) => {
         handleEvent(e);
+        console.log("UP");
       },
+      // moveend: async (e) => {
+      //   handleEvent(e);
+      //   console.log("Move");
+      // },
     });
 
     const handleEvent = async (e) => {
@@ -48,15 +54,15 @@ const MapAddress = (props) => {
 
         let county = userAddress.county ? userAddress.county + "," : "";
         let State = userAddress.state ? userAddress.state + "," : "";
-        let country = userAddress.country ? userAddress.country + "," : "";
+        // let country = userAddress.country ? userAddress.country + "," : "";
         let town = userAddress.town ? userAddress.town + "," : "";
-        let district = userAddress.district ? userAddress.district + "," : "";
+        // let district = userAddress.district ? userAddress.district + "," : "";
         let hamlet = userAddress.hamlet ? userAddress.hamlet + "," : "";
         let neighbourhood = userAddress.neighbourhood
           ? userAddress.neighbourhood + ","
           : "";
         let village = userAddress.village ? userAddress.village + "," : "";
-        let suburb = userAddress.suburb ? userAddress.suburb + "," : "";
+        // let suburb = userAddress.suburb ? userAddress.suburb + "," : "";
         let road = userAddress.road ? userAddress.road + "," : "";
         let amenity = userAddress.amenity ? userAddress.amenity + "," : "";
         let railway = userAddress.railway ? userAddress.railway + "," : "";
@@ -65,7 +71,7 @@ const MapAddress = (props) => {
         let office = userAddress.office ? userAddress.office + "," : "";
         let tourism = userAddress.tourism ? userAddress.tourism + "," : "";
         setAddress(
-          `${country}${State}${county}${suburb}${town}${district}${hamlet}${neighbourhood}${road}${amenity}${railway}${village}${shop}${leisure}${office}${tourism} `
+          `${State}${county}${town}${hamlet}${neighbourhood}${road}${amenity}${railway}${village}${shop}${leisure}${office}${tourism} `
         );
       } catch (error) {
         console.log(error);
@@ -125,27 +131,3 @@ const MapAddress = (props) => {
 };
 
 export default MapAddress;
-
-{
-  /* <> let county = userAddress.county ? userAddress.county + "," : "";
-        let State = userAddress.state ? userAddress.state + "," : "";
-        // let country = userAddress.country ? userAddress.country + "," : "";
-        let town = userAddress.town ? userAddress.town + "," : "";
-        // let district = userAddress.district ? userAddress.district + "," : "";
-        let hamlet = userAddress.hamlet ? userAddress.hamlet + "," : "";
-        let neighbourhood = userAddress.neighbourhood
-          ? userAddress.neighbourhood + ","
-          : "";
-        let village = userAddress.village ? userAddress.village + "," : "";
-        // let suburb = userAddress.suburb ? userAddress.suburb + "," : "";
-        let road = userAddress.road ? userAddress.road + "," : "";
-        let amenity = userAddress.amenity ? userAddress.amenity + "," : "";
-        let railway = userAddress.railway ? userAddress.railway + "," : "";
-        let shop = userAddress.shop ? userAddress.shop + "," : "";
-        let leisure = userAddress.leisure ? userAddress.leisure + "," : "";
-        let office = userAddress.office ? userAddress.office + "," : "";
-        let tourism = userAddress.tourism ? userAddress.tourism + "," : "";
-        setAddress(
-          `${State}${county}${town}${hamlet}${neighbourhood}${road}${amenity}${railway}${village}${shop}${leisure}${office}${tourism} `
-        );</> */
-}
