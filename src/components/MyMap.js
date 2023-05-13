@@ -19,7 +19,9 @@ const MyMap = ({ ClickHandler }) => {
       });
     }, [map]);
 
-    return position === null ? null : console.log("OK");
+    return position === null
+      ? alert("مکان یاب دستگاه خود را فعال کنید")
+      : console.log("OK");
   }
 
   return (
@@ -35,7 +37,7 @@ const MyMap = ({ ClickHandler }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {/* <LocationMarker /> */}
+      <LocationMarker />
       <ClickHandler />
       {/* <MoveLocation /> */}
     </MapContainer>
