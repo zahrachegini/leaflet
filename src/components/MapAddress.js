@@ -10,8 +10,7 @@ const MapAddress = (props) => {
   const [address, setAddress] = useState();
   const [postalCode, setPostalCode] = useState("");
   const [loading, setLoading] = useState(false);
-  const { selectPosition } = props;
-  const locationSelection = [selectPosition?.lat, selectPosition?.lon];
+  const [selectPosition, setSelectPosition] = useState(null);
 
   const handleChangePostalCode = (e) => {
     setPostalCode(e.target.value);
@@ -31,10 +30,6 @@ const MapAddress = (props) => {
         handleEvent(e);
         console.log("UP");
       },
-      // moveend: async (e) => {
-      //   handleEvent(e);
-      //   console.log("Move");
-      // },
     });
 
     const handleEvent = async (e) => {
@@ -84,9 +79,9 @@ const MapAddress = (props) => {
   return (
     <div className="container mx-auto border border-teal-600 mt-4 p-3 rounded-lg grid md:grid-cols-3 gap-4">
       <div className="relative md:col-span-2">
-        <MyMap ClickHandler={ClickHandler} />
+        <MyMap ClickHandler={ClickHandler} selectPosition={selectPosition} />
 
-        <div className="absolute flex left-[50%] bottom-[50%]">
+        {/* <div className="absolute flex left-[50%] bottom-[50%]">
           <img
             src={marker}
             className=" cursor-pointer"
@@ -95,9 +90,12 @@ const MapAddress = (props) => {
               zIndex: "999",
             }}
           />
-        </div>
+        </div> */}
 
-        <SearchBox />
+        <SearchBox
+          selectPosition={selectPosition}
+          setSelectPosition={setSelectPosition}
+        />
       </div>
       <div>
         <form>

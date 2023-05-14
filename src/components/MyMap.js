@@ -1,9 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, useMap, useMapEvents } from "react-leaflet";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import MoveLocation from "./MoveLocation";
+import L from "leaflet";
+import marker from "../assets/images/marker.png";
 
-const MyMap = ({ ClickHandler }) => {
+const icon = L.icon({
+  iconUrl: "../assets/images/marker.png",
+  iconSize: [35, 35],
+});
+
+// function ResetCenterView(props) {
+//   const { selectPosition } = props;
+//   const map = useMap();
+
+//   useEffect(() => {
+//     if (selectPosition) {
+//       map.setView(
+//         L.latLng(selectPosition?.lat, selectPosition?.lon),
+//         map.getZoom(),
+//         {
+//           animate: true,
+//         }
+//       );
+//     }
+//   }, [selectPosition]);
+
+//   return null;
+// }
+
+const MyMap = ({ ClickHandler, props }) => {
+  // const { selectPosition } = props;
+  // const locationSelection = [selectPosition?.lat, selectPosition?.lon];
   function LocationMarker() {
     const [position, setPosition] = useState(null);
     const [bbox, setBbox] = useState([]);
@@ -15,11 +42,12 @@ const MyMap = ({ ClickHandler }) => {
         setPosition(e.latlng);
         map.flyTo(e.latlng, map.getZoom());
         setBbox(e.bounds.toBBoxString().split(","));
-        // alert("OKKKKKKK");
       });
     }, [map]);
 
-    return position === null ? null : console.log("مکان یاب دستگاه خود را فعال کنید");
+    return position === null
+      ? null
+      : console.log("مکان یاب دستگاه خود را فعال کنید");
   }
 
   return (
@@ -35,6 +63,25 @@ const MyMap = ({ ClickHandler }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
+      {/* {selectPosition && (
+        <Marker
+          position={locationSelection}
+          icon={icon}
+          style={{ display: "flex", alignItems: "center" }}
+        ></Marker>
+      )} */}
+
+      <div className="absolute flex left-[50%] bottom-[50%]">
+        <img
+          src={marker}
+          className="cursor-pointer"
+          alt="marker"
+          style={{
+            zIndex: "999",
+          }}
+        />
+      </div>
+      {/* <ResetCenterView selectPosition={selectPosition} /> */}
       <LocationMarker />
       <ClickHandler />
       {/* <MoveLocation /> */}

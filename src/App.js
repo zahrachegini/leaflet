@@ -1,12 +1,5 @@
-import "./App.css";
-import MapAddress from "./components/MapAddress";
-import Navbar from "./components/Navbar";
+import Home from "./components/Home";
 
 export default function App() {
-  return (
-    <>
-      <Navbar />
-      <MapAddress />
-    </>
-  );
+  return <Home />;
 }
