@@ -91,7 +91,7 @@ const SearchBox = (props) => {
               return (
                 <li
                   key={item?.place_id}
-                  className="border border-2 border-gray-400/60 bg-white p-1"
+                  className="border border-2 border-gray-400/60 bg-white p-1 cursor-pointer"
                   onClick={() => {
                     console.log(item.lat, item.lon);
                     setSelectPosition(item);

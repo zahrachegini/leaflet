@@ -81,7 +81,7 @@ const MapAddress = (props) => {
       <div className="relative md:col-span-2">
         <MyMap ClickHandler={ClickHandler} selectPosition={selectPosition} />
 
-        {/* <div className="absolute flex left-[50%] bottom-[50%]">
+        <div className="absolute flex left-[50%] bottom-[50%]">
           <img
             src={marker}
             className=" cursor-pointer"
@@ -90,7 +90,7 @@ const MapAddress = (props) => {
               zIndex: "999",
             }}
           />
-        </div> */}
+        </div>
 
         <SearchBox
           selectPosition={selectPosition}

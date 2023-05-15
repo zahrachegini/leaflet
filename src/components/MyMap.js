@@ -5,32 +5,33 @@ import L from "leaflet";
 import marker from "../assets/images/marker.png";
 
 const icon = L.icon({
-  iconUrl: "../assets/images/marker.png",
+  iconUrl: "../public/images/marker.png",
   iconSize: [35, 35],
 });
 
-// function ResetCenterView(props) {
-//   const { selectPosition } = props;
-//   const map = useMap();
+function ResetCenterView(props) {
+  const { selectPosition } = props;
+  const map = useMap();
 
-//   useEffect(() => {
-//     if (selectPosition) {
-//       map.setView(
-//         L.latLng(selectPosition?.lat, selectPosition?.lon),
-//         map.getZoom(),
-//         {
-//           animate: true,
-//         }
-//       );
-//     }
-//   }, [selectPosition]);
+  useEffect(() => {
+    if (selectPosition) {
+      map.setView(
+        L.latLng(selectPosition?.lat, selectPosition?.lon),
+        map.getZoom(),
+        {
+          animate: true,
+        }
+      );
+    }
+  }, [selectPosition]);
 
-//   return null;
-// }
+  return null;
+}
 
-const MyMap = ({ ClickHandler, props }) => {
+const MyMap = ({ ClickHandler, selectPosition }) => {
   // const { selectPosition } = props;
-  // const locationSelection = [selectPosition?.lat, selectPosition?.lon];
+  const locationSelection = [selectPosition?.lat, selectPosition?.lon];
+  console.log(locationSelection);
   function LocationMarker() {
     const [position, setPosition] = useState(null);
     const [bbox, setBbox] = useState([]);
@@ -56,7 +57,7 @@ const MyMap = ({ ClickHandler, props }) => {
       id="mapId"
       zoom={16}
       center={[35.699711, 51.33758]}
-      style={{ height: "400px" }}
+      style={{ height: "400px", position: "relative" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -67,21 +68,17 @@ const MyMap = ({ ClickHandler, props }) => {
         <Marker
           position={locationSelection}
           icon={icon}
-          style={{ display: "flex", alignItems: "center" }}
+          // style={{
+          //   zIndex: "9999",
+          //   position: "fixed",
+          //   left: "50%",
+          //   bottom: "50%",
+          //   display: "none",
+          // }}
         ></Marker>
       )} */}
 
-      <div className="absolute flex left-[50%] bottom-[50%]">
-        <img
-          src={marker}
-          className="cursor-pointer"
-          alt="marker"
-          style={{
-            zIndex: "999",
-          }}
-        />
-      </div>
-      {/* <ResetCenterView selectPosition={selectPosition} /> */}
+      <ResetCenterView selectPosition={selectPosition} />
       <LocationMarker />
       <ClickHandler />
       {/* <MoveLocation /> */}
